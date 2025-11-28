@@ -1,6 +1,7 @@
 package com.example.boaviagem;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -27,6 +28,9 @@ public class BoaViagemActivity extends Activity {
 
         if (usuarioInformado.equals("leitor") &&
                 senhaInformada.equals("123")) {
+
+            Intent intent = new Intent(this, DashboardActivity.class);
+            startActivity(intent);
 
         } else {
             String mensagemErro = getString(R.string.erro_autenticacao);
