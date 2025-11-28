@@ -20,7 +20,9 @@
     <string name="criar_viagem">Criar Viagem</string>
     <string name="valor">Valor</string>
     <string name="data">Data</string>
-
+    <string name="descricao">Descrição</string>
+    <string name="local">Local</string>
+    <string name="gastei">Gastei</string>
 
 
 </resources>

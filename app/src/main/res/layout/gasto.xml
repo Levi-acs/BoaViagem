@@ -74,6 +74,40 @@
                 </TableRow>
             </TableLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/descricao">
+            </TextView>
+
+            <EditText
+                android:id="@+id/descricao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text">
+            </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/local">
+            </TextView>
+
+            <EditText
+                android:id="@+id/local"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text">
+            </EditText>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="registrarGasto"
+                android:text="@string/gastei">
+            </Button>
+
+
         </LinearLayout>
 
     </LinearLayout>
