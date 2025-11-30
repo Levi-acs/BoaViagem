@@ -10,7 +10,7 @@
 
 
     <LinearLayout
-        android:background="#015488"
+
         android:orientation="vertical">
 
         <TextView

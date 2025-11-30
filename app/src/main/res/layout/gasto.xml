@@ -2,7 +2,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,7 +10,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#015488"
             android:orientation="vertical">
 
             <TextView
@@ -68,7 +66,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:onClick="selecionarData"
-                        android:text="@string/selecione">
+                        android:text="@string/selecione"
+                        android:textStyle="bold">
                     </Button>
 
                 </TableRow>
@@ -77,7 +76,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/descricao">
+                android:text="@string/descricao"
+                android:textStyle="bold">
             </TextView>
 
             <EditText
@@ -90,7 +90,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/local">
+                android:text="@string/local"
+                android:textStyle="bold">
             </TextView>
 
             <EditText
@@ -107,6 +108,18 @@
                 android:text="@string/gastei">
             </Button>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categoria">
+            </TextView>
+
+            <Spinner
+                android:id="@+id/categoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/categoria">
+            </Spinner>
 
         </LinearLayout>
 

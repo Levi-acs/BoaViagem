@@ -4,17 +4,21 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 
 import java.util.Calendar;
-// teste commit
+
 public class GastoActivity extends Activity {
 
     private int ano, mes, dia;
     private Button dataGastos;
+
+    private Spinner categoria;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +42,13 @@ public class GastoActivity extends Activity {
                 abrirDatePicker();
             }
         });
+
+        ArrayAdapter<CharSequence> adapter =
+                ArrayAdapter.createFromResource(
+                        this,R.array.categoria_gasto, android.R.layout.simple_spinner_item);
+        categoria = (Spinner) findViewById(R.id.categoria);
+        categoria.setAdapter(adapter);
+
     }
 
     private void abrirDatePicker() {
@@ -61,5 +72,9 @@ public class GastoActivity extends Activity {
 
                     dataGastos.setText(dia + "/" + (mes + 1) + "/" + ano);
                 }
+
+
             };
+
+
 }

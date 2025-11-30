@@ -33,6 +33,14 @@
         <activity
             android:name=".GastoActivity"
             android:exported="true" />
+        <activity
+            android:name=".ViagemListActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".GastosListActivity"
+            android:exported="true">
+        </activity>
 
 
 
