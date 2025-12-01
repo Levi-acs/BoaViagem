@@ -18,11 +18,12 @@ public class DashboardActivity extends Activity {
 
         if (id == R.id.nova_viagem) {
             startActivity(new Intent(this, ViagemActivity.class));
-
         } else if (id == R.id.novo_gasto) {
             startActivity(new Intent(this, GastoActivity.class));
+        } else if (id == R.id.minhas_viagens) {
+            startActivity(new Intent(this, ViagemListActivity.class));
         }
 
 
-        }
+    }
     }
