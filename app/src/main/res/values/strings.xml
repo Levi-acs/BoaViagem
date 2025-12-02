@@ -22,12 +22,22 @@
     <string name="data">Data</string>
     <string name="descricao">Descrição</string>
     <string name="local">Local</string>
-    <string name="gastei">Gastei</string>
+    <string name="gastei">Gastei !</string>
     <string name="remover">Remover</string>
+    <string name="gastos_realizados">Gastos Realizados</string>
     <string name="remover_viagem">Remover viagem</string>
+    <string name="confirmacao_de_exclusao_viagem">Deseja realmente remover a viagem?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
     <string name="sair">Sair</string>
     <string name="opcoes">Opções</string>
     <string name="edita">Editar</string>
+    <string name="preferencias">Preferências</string>
+    <string name="modo_viagem">Modo Viagem</string>
+    <string name="modo_viagem_sumario">Determina a viagem ativa com base na data atual</string>
+    <string name="valor_limite">Alerta de gastos</string>
+    <string name="valor_limite_sumario">Notifica quando os gastos ultrapassarem o percentual informado</string>
+    <string name="informe_valor_limite">Informe o valor limite (em %)</string>
 
 
 

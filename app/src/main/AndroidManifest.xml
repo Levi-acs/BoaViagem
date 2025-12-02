@@ -41,7 +41,10 @@
             android:name=".GastosListActivity"
             android:exported="true">
         </activity>
-
+        <activity
+            android:name=".ConfiguracoesActivity"
+            android:exported="true">
+        </activity>
 
 
     </application>

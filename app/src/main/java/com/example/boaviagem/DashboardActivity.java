@@ -28,6 +28,8 @@ public class DashboardActivity extends Activity {
             startActivity(new Intent(this, GastoActivity.class));
         } else if (id == R.id.minhas_viagens) {
             startActivity(new Intent(this, ViagemListActivity.class));
+        } else if (id == R.id.configuracoes) {
+            startActivity(new Intent(this, ConfiguracoesActivity.class));
         }
 
 
