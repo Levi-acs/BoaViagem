@@ -3,11 +3,15 @@ package com.example.boaviagem;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -24,6 +28,8 @@ public class GastoActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gasto);
+
+        getActionBar().setTitle("Novo Gasto");
 
         // pegando data atual
         Calendar calendar = Calendar.getInstance();
@@ -76,5 +82,25 @@ public class GastoActivity extends Activity {
 
             };
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.gasto_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == R.id.remover){
+            removerGasto();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void removerGasto() {
+        // Aqui você coloca sua lógica
+        Toast.makeText(this, "Gasto removido!", Toast.LENGTH_SHORT).show();
+    }
 
 }

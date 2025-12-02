@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 public class BoaViagemActivity extends Activity {
 
+
+
     private EditText usuario;
     private EditText senha;
 
@@ -17,6 +19,7 @@ public class BoaViagemActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        getActionBar().setTitle("Login");
         usuario = (EditText) findViewById(R.id.usuario);
         senha = (EditText) findViewById(R.id.senha);
     }

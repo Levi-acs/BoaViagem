@@ -20,6 +20,8 @@ public class ViagemListActivity extends ListActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getActionBar().setTitle("Viagens");
+
         String[] de = {"imagem","destino","data","total"};
         int[] para = {R.id.tipoViagem,R.id.destino,R.id.data,R.id.valor};
 

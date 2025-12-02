@@ -26,6 +26,8 @@ public class GastosListActivity extends ListActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getActionBar().setTitle("Gastos");
+
      String[] de = {"data","descricao","valor","categoria"};
      int [] para = {R.id.data,R.id.descricao,R.id.valor,R.id.categoria};
 
