@@ -57,6 +57,10 @@ public class GastoActivity extends Activity {
 
     }
 
+    public void selecionarData(View view) {
+        showDialog(view.getId());
+    }
+
     private void abrirDatePicker() {
         DatePickerDialog dialog = new DatePickerDialog(
                 this,

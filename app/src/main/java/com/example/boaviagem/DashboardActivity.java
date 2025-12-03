@@ -1,22 +1,30 @@
 package com.example.boaviagem;
 
-
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
-
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-
-
 public class DashboardActivity extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
+
+        if (getActionBar() != null) {
+            getActionBar().setTitle("Boa Viagem");
+        }
+    }
+
+    // ✅ ADICIONE ESTE MÉTODO
+    public void criarViagem(View view) {
+        startActivity(new Intent(this, ViagemActivity.class));
     }
 
     public void selecionarOpcao(View view) {
@@ -31,10 +39,9 @@ public class DashboardActivity extends Activity {
         } else if (id == R.id.configuracoes) {
             startActivity(new Intent(this, ConfiguracoesActivity.class));
         }
-
-
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.dashboard_menu, menu);
@@ -46,14 +53,18 @@ public class DashboardActivity extends Activity {
         int id = item.getItemId();
 
         if (id == R.id.sair) {
-            finish(); // Fecha a activity
+            // Limpar preferências de login
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("manter_conectado", false);
+            editor.apply();
+
+            // Voltar para tela de login
+            startActivity(new Intent(this, BoaViagemActivity.class));
+            finish();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }
-
