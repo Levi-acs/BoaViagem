@@ -32,8 +32,8 @@ public class GastosListActivity extends ListActivity
 
         getActionBar().setTitle("Gastos");
 
-     String[] de = {"data","descricao","valor","categoria"};
-     int [] para = {R.id.data,R.id.descricao,R.id.valor,R.id.categoria};
+        String[] de = {"data","descricao","valor","categoria"};
+        int [] para = {R.id.data,R.id.descricao,R.id.valor,R.id.categoria};
 
         SimpleAdapter adapter = new SimpleAdapter(this,ListarGastos(),R.layout.lista_gastos,de,para);
 
@@ -127,30 +127,30 @@ public class GastosListActivity extends ListActivity
         }
 
     }
-        @Override
-        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.gasto_menu, menu);
-        }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.gasto_menu, menu);
+    }
 
-        @Override
-        public boolean onContextItemSelected(MenuItem item){
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
 
-            if (item.getItemId() == R.id.remover){
-                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        if (item.getItemId() == R.id.remover){
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 
-                if(info != null){
-                    gastos.remove(info.position);
-                    getListView().invalidateViews();
-                    dataAnterior = "";
-                    return true;
-                } else {
-                    Toast.makeText(this , " Erro ao obter informações do item", Toast.LENGTH_SHORT).show();
-                    return false;
-                }
+            if(info != null){
+                gastos.remove(info.position);
+                getListView().invalidateViews();
+                dataAnterior = "";
+                return true;
+            } else {
+                Toast.makeText(this , " Erro ao obter informações do item", Toast.LENGTH_SHORT).show();
+                return false;
             }
-            return super.onContextItemSelected(item);
         }
+        return super.onContextItemSelected(item);
+    }
 
 
 

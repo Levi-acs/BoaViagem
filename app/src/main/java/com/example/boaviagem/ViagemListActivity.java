@@ -195,17 +195,22 @@ public class ViagemListActivity extends ListActivity
             case DialogInterface.BUTTON_POSITIVE:
                 // Remover do banco de dados
                 SQLiteDatabase db = helper.getWritableDatabase();
-                db.delete("viagem", "_id = ?", new String[]{id});
-
                 viagens.remove(viagemSelecionada);
+                removerViagem(id);
                 getListView().invalidateViews();
-
                 Toast.makeText(this, "Viagem removida", Toast.LENGTH_SHORT).show();
                 break;
             case DialogInterface.BUTTON_NEGATIVE:
                 dialogConfirmacao.dismiss();
                 break;
         }
+    }
+
+    private void removerViagem(String id){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        String where [] = new String[]{id};
+        db.delete("gasto", "viagem_id = ?", where);
+        db.delete("viagem", "_id = ?", where);
     }
 
     private AlertDialog criarAlertDialog() {
