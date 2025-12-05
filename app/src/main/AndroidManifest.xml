@@ -46,6 +46,22 @@
             android:exported="true">
         </activity>
 
+        <provider
+            android:name=".provider.BoaViagemProvider"
+            android:authorities="br.com.example.boaviagem.provider"
+            android:exported="false"
+            android:permission="br.com.example.boaviagem.provider.permission.ALL"
+            android:readPermission="br.com.example.boaviagem.provider.permission.READ"
+            android:writePermission="br.com.example.boaviagem.provider.permission.WRITE">
+
+            <path-permission
+                android:path="/viagem"
+                android:permission="br.com.example.boaviagem.provider.permission.ALL" />
+
+            <path-permission
+                android:path="/gasto"
+                android:permission="br.com.example.boaviagem.provider.permission.ALL" />
+        </provider>
 
     </application>
 

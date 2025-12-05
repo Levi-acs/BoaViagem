@@ -12,6 +12,13 @@ public class BoaViagemContract {
     public static final String GASTO_PATH = "gasto";
 
     public static final class Viagem {
+
+        public static final String CONTENT_TYPE =
+                "vnd.android.cursor.dir/"	+
+                        "vnd.br.com.example.boaviagem.provider/viagem";
+        public static final String CONTENT_ITEM_TYPE =
+               " vnd.android.cursor.dir/"	+
+                        "vnd.br.com.example.boaviagem.provider/viagem";
         public static final Uri CONTENT_URI =
                 Uri.withAppendedPath(AUTHORITY_URI, VIAGEM_PATH);
         public static final String _ID = "_id";
@@ -23,6 +30,14 @@ public class BoaViagemContract {
     }
 
     public static final class Gasto{
+
+        public static final String CONTENT_TYPE =
+               "vnd.android.cursor.dir/"	+
+                        "vnd.br.com.example.boaviagem.provider/gasto";
+
+        public static final String CONTENT_ITEM_TYPE =
+                "vnd.android.cursor.dir/"	+
+                        "vnd.br.com.example.boaviagem.provider/gasto";
         public static final Uri CONTENT_URI =
                 Uri.withAppendedPath(AUTHORITY_URI, GASTO_PATH);
         public static final String _ID = "_id";
