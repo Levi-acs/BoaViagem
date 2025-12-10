@@ -58,6 +58,14 @@
         android:text="@string/entrar">
     </Button>
 
+    <Button
+        android:id="@+id/btnEntrar"
+        android:onClick="entrarOnclick"
+        android:text="Entrar com Google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
 </LinearLayout>
 
 

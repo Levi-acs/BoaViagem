@@ -9,58 +9,117 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.Task;
+
 public class BoaViagemActivity extends Activity {
 
-    private static final String MANTER_CONECTADO = "manter_conectado";
+    private SharedPreferences preferencias;
+
     private EditText usuario;
     private EditText senha;
-
     private CheckBox manterConectado;
 
+    private GoogleSignInClient googleClient;
+    private static final int RC_SIGN_IN = 100;
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        getActionBar().setTitle("Login");
+        usuario = findViewById(R.id.usuario);
+        senha = findViewById(R.id.senha);
+        manterConectado = findViewById(R.id.manterConectado);
 
-        usuario = (EditText) findViewById(R.id.usuario);
-        senha = (EditText) findViewById(R.id.senha);
-        manterConectado = (CheckBox) findViewById(R.id.manterConectado);
+        preferencias = getSharedPreferences(Constantes.PREFERENCIAS, MODE_PRIVATE);
 
-        SharedPreferences preferences =
-                getPreferences(MODE_PRIVATE);
-        boolean conectado =
-                preferences.getBoolean(MANTER_CONECTADO, false);
+        // -----------------------------
+        // CONFIGURA LOGIN DO GOOGLE
+        // -----------------------------
+        GoogleSignInOptions gso =
+                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestEmail()
+                        .build();
 
-        if(conectado){
-            startActivity(
-                    new Intent(this, DashboardActivity.class)
-            );
+        googleClient = GoogleSignIn.getClient(this, gso);
+
+        // Login automático
+        if (preferencias.getBoolean(Constantes.MANTER_CONECTADO, false)) {
+            GoogleSignInAccount conta = GoogleSignIn.getLastSignedInAccount(this);
+
+            if (conta != null) {
+                iniciarDashboard();
+                return;
+            }
+        }
+
+        if (getActionBar() != null) {
+            getActionBar().setTitle("Login");
         }
     }
 
+    // Inicia dashboard
+    private void iniciarDashboard() {
+        startActivity(new Intent(this, DashboardActivity.class));
+        finish();
+    }
+
+    // Botão "Entrar"
     public void entrarOnclick(View v) {
+        iniciarLoginGoogle();
+    }
 
-        String usuarioInformado = usuario.getText().toString();
-        String senhaInformada = senha.getText().toString();
+    // -----------------------------
+    // LOGIN GOOGLE
+    // -----------------------------
+    private void iniciarLoginGoogle() {
+        Intent intent = googleClient.getSignInIntent();
+        startActivityForResult(intent, RC_SIGN_IN);
+    }
 
-        if (usuarioInformado.equals("leitor") &&
-                senhaInformada.equals("123")) {
+    // Resultado do login Google
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-            SharedPreferences preferences =
-                    getPreferences(MODE_PRIVATE);
+        if (requestCode == RC_SIGN_IN) {
 
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean(MANTER_CONECTADO,manterConectado.isChecked());
-            editor.commit();
+            Task<GoogleSignInAccount> task =
+                    GoogleSignIn.getSignedInAccountFromIntent(data);
 
-            startActivity(new Intent(this, DashboardActivity.class));
+            try {
+                GoogleSignInAccount conta = task.getResult(Exception.class);
 
-        } else {
-            String mensagemErro = getString(R.string.erro_autenticacao);
-            Toast toast = Toast.makeText(this, mensagemErro, Toast.LENGTH_SHORT);
-            toast.show();
+                if (conta != null) {
+                    salvarLogin(conta.getEmail());
+                    iniciarDashboard();
+                }
+
+            } catch (Exception e) {
+                Toast.makeText(this, "Falha no login", Toast.LENGTH_SHORT).show();
+            }
         }
+    }
+
+    // Salva email e estado "manter conectado"
+    private void salvarLogin(String email) {
+        SharedPreferences.Editor editor = preferencias.edit();
+
+        editor.putString(Constantes.NOME_CONTA, email);
+        editor.putBoolean(Constantes.MANTER_CONECTADO, manterConectado.isChecked());
+
+        editor.apply();
+    }
+
+    public static class Constantes {
+        public static final String TOKEN_ACESSO = "token_acesso";
+        public static final String NOME_CONTA = "nome_conta";
+        public static final String APP_NAME = "BoaViagem";
+        public static final String PREFERENCIAS = "preferencias_globais";
+        public static final String MANTER_CONECTADO = "manter_conectado";
     }
 }

@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.boaviagem">
 
+    <!-- Todas as permissões DEVEM ficar aqui, fora da tag <application> -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,26 +31,28 @@
         <activity
             android:name=".DashboardActivity"
             android:exported="true" />
+
         <!-- Tela nova viagem -->
         <activity
             android:name=".ViagemActivity"
             android:exported="true" />
+
         <!-- Tela novo gasto -->
         <activity
             android:name=".GastoActivity"
             android:exported="true" />
+
         <activity
             android:name=".ViagemListActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
+
         <activity
             android:name=".GastosListActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
+
         <activity
             android:name=".ConfiguracoesActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
 
         <provider
             android:name=".provider.BoaViagemProvider"
