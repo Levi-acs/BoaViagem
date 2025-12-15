@@ -54,6 +54,11 @@
             android:name=".ConfiguracoesActivity"
             android:exported="true" />
 
+
+        <activity android:name=".AnotacaoActivity"
+            android:exported="true">
+        </activity>
+
         <provider
             android:name=".provider.BoaViagemProvider"
             android:authorities="br.com.example.boaviagem.provider"

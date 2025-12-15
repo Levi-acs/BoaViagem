@@ -40,6 +40,15 @@ android {
     buildFeatures {
         compose = true
     }
+
+    // 🔥 CORREÇÃO DO ERRO DO META-INF DUPLICADO
+    packaging {
+        resources.excludes += "META-INF/DEPENDENCIES"
+        resources.excludes += "META-INF/LICENSE"
+        resources.excludes += "META-INF/LICENSE.txt"
+        resources.excludes += "META-INF/NOTICE"
+        resources.excludes += "META-INF/NOTICE.txt"
+    }
 }
 
 dependencies {
@@ -61,6 +70,13 @@ dependencies {
 
     // Google Sign-In / Auth
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+    // Google API Client + HTTP + Calendar
+    implementation("com.google.api-client:google-api-client-android:1.33.2")
+    implementation("com.google.http-client:google-http-client-gson:1.43.3")
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.api-client:google-api-client:2.2.0")
+    implementation("com.google.apis:google-api-services-calendar:v3-rev20220715-2.0.0")
 
     // Testes
     testImplementation(libs.junit)

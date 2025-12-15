@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 public class DashboardActivity extends Activity {
 
@@ -22,7 +25,6 @@ public class DashboardActivity extends Activity {
         }
     }
 
-    // ✅ ADICIONE ESTE MÉTODO
     public void criarViagem(View view) {
         startActivity(new Intent(this, ViagemActivity.class));
     }
@@ -50,21 +52,40 @@ public class DashboardActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        if (id == R.id.sair) {
-            // Limpar preferências de login
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("manter_conectado", false);
-            editor.apply();
-
-            // Voltar para tela de login
-            startActivity(new Intent(this, BoaViagemActivity.class));
-            finish();
+        if (item.getItemId() == R.id.sair) {
+            logout();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //  LOGOUT COMPLETO
+    private void logout() {
+
+        // 1️⃣ Limpa SharedPreferences
+        SharedPreferences preferencias =
+                getSharedPreferences(BoaViagemActivity.Constantes.PREFERENCIAS, MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = preferencias.edit();
+        editor.clear();
+        editor.apply();
+
+        // 2️⃣ Logout do Google
+        GoogleSignInClient googleClient =
+                GoogleSignIn.getClient(this,
+                        new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                                .requestEmail()
+                                .build());
+
+        googleClient.signOut().addOnCompleteListener(task -> {
+
+            // 3️⃣ Volta para Login limpando pilha
+            Intent intent = new Intent(this, BoaViagemActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        });
     }
 }

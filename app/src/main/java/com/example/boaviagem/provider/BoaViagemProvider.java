@@ -12,7 +12,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
 import com.example.boaviagem.DatabaseHelper;
-import com.example.boaviagem.domain.Gastos;
 
 public class BoaViagemProvider  extends ContentProvider {
 
