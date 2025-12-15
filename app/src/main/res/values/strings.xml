@@ -52,6 +52,8 @@
         <item>Hospedagem</item>
         <item>Outros</item>
     </string-array>
-
+    <string name="titulo">Título</string>
+    <string name="dia">Dia</string>
+    <string name="salvar">Salvar</string>
 
 </resources>

@@ -7,4 +7,5 @@ public class Constantes {
     public static final String MODO_SELECIONAR_VIAGEM = "modo_selecionar_viagem";
     public static final int VIAGEM_LAZER = 1;
     public static final int VIAGEM_NEGOCIOS = 2;
+    public static final String VIAGEM_SELECIONADA = "viagem_selecionada";
 }

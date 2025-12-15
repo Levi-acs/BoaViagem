@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.boaviagem.domain.Anotacao;
 import com.example.boaviagem.fragment.ViagemListFragment;
 
 public class AnotacaoActivity extends FragmentActivity {
@@ -38,4 +39,12 @@ public class AnotacaoActivity extends FragmentActivity {
 
         transaction.commit();
     }
+    @Override
+    public void viagemSelecionada(Bundle bundle){}
+
+    @Override
+    public void anotacaoSelecionada(Anotacao anotacao){}
+
+    @Override
+    public void novaAnotacao(){}
 }
