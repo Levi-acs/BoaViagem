@@ -1,5 +1,6 @@
 package com.example.boaviagem.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Button;
 
 import androidx.fragment.app.ListFragment;
 
+import com.example.boaviagem.AnotacaoListener;
 import com.example.boaviagem.Constantes;
 import com.example.boaviagem.R;
 import com.example.boaviagem.domain.Anotacao;
@@ -19,6 +21,8 @@ import java.util.List;
 
 public class AnotacoesListFragment  extends ListFragment
 implements AdapterView.OnItemClickListener, View.OnClickListener {
+
+    private AnotacaoListener callback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanteState){
@@ -59,13 +63,22 @@ public void listarAnotacoesPorViagem(Bundle bundle){
         return anotacoes;
     }
 
+        @Override
+        public void onAttach(Activity activity){
+        super.onAttach(activity);
+        callback = (AnotacaoListener) activity;
+        }
+
     @Override
     public void onItemClick(AdapterView<?> parent,View view, int position,long id){
+
+        Anotacao anotacao = (Anotacao) getListAdapter().getItem(position);
+        callback.anotacaoSelecionada(anotacao);
 
     }
 
     @Override
     public void onClick(View view){
-
+        callback.novaAnotacao();
     }
 }

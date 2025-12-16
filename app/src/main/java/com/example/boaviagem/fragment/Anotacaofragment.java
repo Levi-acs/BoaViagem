@@ -32,11 +32,33 @@ public class Anotacaofragment extends Fragment implements View.OnClickListener {
         descricao = (EditText) getActivity().findViewById(R.id.descricao);
         botaoSalvar = (Button) getActivity().findViewById(R.id.salvar);
         botaoSalvar.setOnClickListener(this);
+
+        if(anotacao != null){
+            prepararEdicao(anotacao);
+        }
+    }
+
+    public void setAnotacao(Anotacao anotacao){
+        this.anotacao = anotacao;
+    }
+
+    public void prepararEdicao(Anotacao anotacao){
+        setAnotacao(anotacao);
+        dia.setText(anotacao.getDia().toString());
+        titulo.setText(anotacao.getTitulo());
+        descricao.setText(anotacao.getDescricao());
     }
 
     @Override
     public void onClick(View v){
 
+    }
+
+    public void criarNovaAnotacao(){
+        anotacao = new Anotacao();
+        dia.setText("");
+        titulo.setText("");
+        descricao.setText("");
     }
 
 }
